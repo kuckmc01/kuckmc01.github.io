@@ -1,0 +1,293 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- jquery paging plugin -->
+<script type="text/javascript" src="infusion-jQuery-Paging/jquery.paging.js"></script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+</head>
+<body>
+<style type="text/css">
+body{
+	background: #4c4c4c; /* Old browsers */
+background: -moz-linear-gradient(top,  #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #2b2b2b 76%, #1c1c1c 91%, #000000 100%, #131313 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(12%,#595959), color-stop(25%,#666666), color-stop(39%,#474747), color-stop(50%,#2c2c2c), color-stop(76%,#2b2b2b), color-stop(91%,#1c1c1c), color-stop(100%,#000000), color-stop(100%,#131313)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#2b2b2b 76%,#1c1c1c 91%,#000000 100%,#131313 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#2b2b2b 76%,#1c1c1c 91%,#000000 100%,#131313 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#2b2b2b 76%,#1c1c1c 91%,#000000 100%,#131313 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#2b2b2b 76%,#1c1c1c 91%,#000000 100%,#131313 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
+}
+.imgs-container{ height: 500px; width:960px; margin-left: auto; margin-right: auto;}
+.imgs-container ul {list-style-type: none;}
+.imgs li{float:left;padding:5px 10px 5px 10px; }
+.imgs li img {height: 150px; width: 200px; margin-bottom: 10px; 
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.img-button{ display:block; margin-left: auto; margin-right: auto;}
+.add-btn {
+  background: #1deb35;
+  background-image: -webkit-linear-gradient(top, #1deb35, #266945);
+  background-image: -moz-linear-gradient(top, #1deb35, #266945);
+  background-image: -ms-linear-gradient(top, #1deb35, #266945);
+  background-image: -o-linear-gradient(top, #1deb35, #266945);
+  background-image: linear-gradient(to bottom, #1deb35, #266945);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+.add-btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  cursor: pointer; cursor: hand;
+}
+
+.remove-btn {
+  background: #ff0000;
+  background-image: -webkit-linear-gradient(top, #ff0000, #823131);
+  background-image: -moz-linear-gradient(top, #ff0000, #823131);
+  background-image: -ms-linear-gradient(top, #ff0000, #823131);
+  background-image: -o-linear-gradient(top, #ff0000, #823131);
+  background-image: linear-gradient(to bottom, #ff0000, #823131);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+.remove-btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  cursor: pointer; cursor: hand;
+}
+.in-collection {
+  display: block;
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 14px;
+  background: #586b78;
+  padding: 2px 63px 2px 63px;
+  text-decoration: none;
+}
+.empty-collection {
+  display: block;
+  height:20px;
+}
+
+</style>
+<div id="main-container">
+	<div class="imgs-container">
+		<ul class="imgs">
+			<li id="img-0">
+				<span class="collection-identifer empty-collection" id="in-collection-0"></span>
+				<a class="fancybox" rel="group" href="images/Auto_Supercars_Marusia_exotic_cars_042157_.jpg">
+					<img src="images/rsz_Auto_Supercars_Marusia_exotic_cars_042157_small.jpg" alt="" />
+				</a>
+				<button class="img-button add-btn" id="img-button-0" data-collection-action="add">+</button>
+			</li>
+			<li id="img-1">
+				<span class="empty-collection"></span>
+				<a class="fancybox" rel="group" href="images/bmw_mt_58_concept_sideline.jpg">
+					<img src="images/rsz_bmw_mt_58_concept_sideline_small.jpg" alt="" />
+				</a>
+				<button class="img-button add-btn" id="img-button-1">Add to my collection</button>
+			</li>
+			<li id="img-2">
+				<span class="empty-collection"></span>
+				<a class="fancybox" rel="group" href="images/lamborghini-cabrera-passion4luxury.jpg">
+					<img src="images/rsz_lamborghini-cabrera-passion4luxury_small.jpg" alt="" />
+				</a>
+				<button class="img-button add-btn" id="img-button-2">Add to my collection</button>
+			</li>
+				<li id="img-3">
+				<span class="empty-collection"></span>
+				<a class="fancybox" rel="group" href="images/Auto_Supercars_Marusia_exotic_cars_042157_.jpg">
+					<img src="images/rsz_Auto_Supercars_Marusia_exotic_cars_042157_small.jpg" alt="" />
+				</a>
+				<button class="img-button add-btn" id="img-button-3">Add to my collection</button>
+			</li>
+			<li id="img-4">
+				<span class="empty-collection"></span>
+				<a class="fancybox" rel="group" href="images/bmw_mt_58_concept_sideline.jpg">
+					<img src="images/rsz_bmw_mt_58_concept_sideline_small.jpg" alt="" />
+				</a>
+				<button class="img-button add-btn" id="img-button-4">Add to my collection</button>
+			</li>
+			<li id="img-5">
+				<span class="empty-collection"></span>
+				<a class="fancybox" rel="group" href="images/lamborghini-cabrera-passion4luxury.jpg">
+					<img src="images/rsz_lamborghini-cabrera-passion4luxury_small.jpg" alt="" />
+				</a>
+				<button class="img-button add-btn" id="img-button-5">Add to my collection</button>
+			</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	
+	$('.img-button').click(function(){
+		var id = $(this).attr('id');
+		console.log(id);
+		var currentAction =  $(this).attr('data-collection-action');
+		console.log(currentAction);
+		var collectionIdentifer = $(this).closest('li').find('span');
+		var add = '+';
+		var remove = "-";
+
+		if(currentAction === 'add'){
+			console.log('adding to my collection');
+			$(this).attr('data-collection-action','remove');
+			$(this).removeClass('add-btn').addClass('remove-btn');
+			
+			console.log(collectionIdentifer);
+			collectionIdentifer.removeClass('empty-collection').addClass('in-collection').html('In collection');
+			$(this).html(remove);
+		}else{
+			$(this).attr('data-collection-action','add');
+			$(this).removeClass('remove-btn').addClass('add-btn');
+			collectionIdentifer.removeClass('in-collection').addClass('empty-collection').html('');
+			$(this).html(add);
+		}
+
+	});
+
+	$(document).ready(function() {
+
+		$(".fancybox").fancybox({
+							helpers : {
+					title : {
+						type : 'inside'
+					},
+				},
+				afterLoad : function(){
+					console.log("afterLoad");
+					console.log(this);
+					//$('#hi').click(function(){alert('hi');});
+
+					
+				},
+				afterShow : function(){
+					console.log("afterShow");
+					console.log(this);
+					$('.fancybox-title').append('');
+
+					$('#add-to-collection').click(function(){alert('adding to collection');});
+				},
+
+				onReady : function(){
+					console.log(this);
+					console.log(this.href);
+					console.log($("li a[href='"+this.href+"']"));
+					this.title = '<div style="width:11px;margin-left:auto;margin-right:auto;"><button id="add-to-collection" class="add-btn">+</button>';
+
+				}
+		});
+
+
+$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
+	tags: "city,nature",
+	format: "json"
+},
+function(data) {
+
+	$.each(data.items, function(i, item) {
+		console.log(i);
+		console.log(item);
+		var rotateCSS = 'rotate(' + (Math.random() - 0.5) * 30 + 'deg)';
+
+		$("<img/>")
+			.attr('src', item.media.m)
+			.css({
+				'-moz-transform': rotateCSS,
+				'-webkit-transform': rotateCSS
+			})
+			.css('top', i * 10 + "px")
+			.appendTo("#images");
+
+	});
+
+	$('#pager').paging(20,{
+
+		onSelect: function(page) {
+
+			$("#imageshadow").animate({
+				left: ((page - 1) * 19 - 2) + "px"
+			});
+
+			if (null !== selectedImg) {
+				$('#images').find("img").eq(selectedImg).animate({
+					left: '0px'
+				}, function() {
+					$('#images').find("img").eq(page - 1).animate({
+						left: '400px'
+					});
+				});
+			} else {
+				$('#images').find("img").eq(page-1).animate({
+					left: '400px'
+				});
+			}
+
+			selectedImg = page - 1;
+
+			return false;
+		},
+		onFormat: function() {
+
+				if (this.value != this.page)
+					return '<a style="left:'+((this.pos-1)*19)+'px;" href="#' + this.value + '"></a>';
+				return '<span style="left:'+((this.pos-1)*19)+'px;background-color:#fc0;"></span>';
+		},
+		format: '*',
+		perpage: 1,
+		page:1
+	});
+
+});
+		
+		
+	});
+</script></body>
+</html>

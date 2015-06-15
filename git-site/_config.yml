@@ -1,0 +1,11 @@
+# Site settings
+title: Notes and discovery in AEM
+email: 
+description: A place to note findings and fun in AEM
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://kuckmc01.github.io/" # the base hostname & protocol for your site
+twitter_username: 
+github_username:  
+
+# Build settings
+markdown: kramdown

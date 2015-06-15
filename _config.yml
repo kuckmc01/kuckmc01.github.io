@@ -1,7 +1,7 @@
 # Site settings
-title: Notes and discovery in AEM
+title: Notes and discovery in AEM and technologies
 email: 
-description: A place to note findings and fun in AEM
+description: A place to note findings and fun in AEM, Java, and other languages and technologies
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://kuckmc01.github.io/" # the base hostname & protocol for your site
 twitter_username: 
